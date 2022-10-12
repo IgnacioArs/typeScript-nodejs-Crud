@@ -1,0 +1,37 @@
+//peticion get
+GET http://192.168.52.35:3000/obtenerNotas
+
+//peticion post
+
+###
+POST http://192.168.52.35:3000/crearNota
+content-type: application/json
+
+{
+    "nombre":"typeScript",
+    "descripcion": "es un tipado de javasscript"
+}
+
+//obtener una nota por id
+###
+GET http://192.168.52.35:3000/obtenerUnaNota/Nz2RPKm_ccrRdlwxKJRrj
+
+//eliminar una nota por id
+###
+DELETE  http://192.168.52.35:3000/eliminarUnaNota/Nz2RPKm_ccrRdlwxKJRrj
+
+
+
+//actualizar una nota por id
+###
+PUT http://192.168.52.35:3000/actualizarUnaNota/tvfqVjq0crBpSoRmpA0ii
+content-type: application/json
+
+{
+    "nombre":"nodejs 2022",
+    "descripcion": "tiene una actualizacion para "
+}
+
+//cantidad de notas actuales
+###
+GET http://192.168.52.35:3000/notasCantidad

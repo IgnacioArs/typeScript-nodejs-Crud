@@ -1,0 +1,67 @@
+- npm init --y (package.jason)
+         modulos configuracion 
+-npm install express  (framework)
+-npm install lowdb  (guardar datos detros de un archivo json FUNCIONA TIPO CRUD ) --> npm install lowdb@1.0.0
+-npm install morgan (peticiones http)
+-npm install nanoid (serie de caracteres o tambien id unico) --> npm install nanoid@3.1.23
+-npm install swagger-jsdoc (para configurar swagger)
+-npm install swagger-ui-express (crear la interface web dentro de nuestra rest-api o integrar una vista mas)
+-npm install cors (para comunicarnos con otros servidores)
+         modulos ambiente desarrollo
+-npm install typescript (compilador de typesscript --> nos ayudara pasar de typesScript A JavaScript)
+-npm install ts-node (nos ayudara a ejecutar codigo de typescript leera el codigo tal cual)
+-npm install nodemon (ayudara a reiniciar el servidor por cada actualizacion de codigo)
+          modulos con sus tipos de datos/(Modulos que necesitan TYPES)
+- @types/cors @types/express @types/lowdb @types/morgan @types/swagger-jsdoc @types/swagger-ui-express 
+(npm install -D typescript ts-node nodemon @types/cors @types/express @types/lowdb @types/morgan @types/swagger-jsdoc @types/swagger-ui-express)
+
+-npx tsc --init   (ya  que necesita un archivo que se llama tsconfig)
+ configuramos el archivo   "target": "ES6", <--- lenguaje script6
+                              "outDir": "./build", <-- en que parte va a dejar el codigo comvertido
+                                 "rootDir": "./src", <-- para decirle donde esta nuestro codigo typescript
+                                   "target": "ES6",      
+                                    "rootDir": "./src",
+                                    "outDir": "./build",
+-npx tsc --> para finalizar aplicamos este comando y creara una carpeta con nuestro codigo comvertido
+ 
+-Para pasar codigo de  typesScript a JavaScript (para hacer esto tiene que estar instalado el compilador de typesScript "ya esta instalado")
+pero hay que configurarlo dentro del archivo package.json de la siguiente manera
+  (para esto creamos el comando build) es decir "ejecuta el compilador de typescript"
+  "scripts": {
+    "build": "tsc"
+  },
+
+-luego en el terminal ejecutamos este comando npm run build --> para que se agregen todos los archivos generados a la carpeta build
+(src-
+      - controllers
+      - routes) 
+  src/app.ts ->db.ts->index.ts-swaggerOptions.ts)
+
+-ahora creamos un archivo para nodemon para no estar ejecutando (node build/app.js) y poder tener el servidor en desarrollo
+hay que hacer lo siguiente, en la raiz del proyecto crearemos el siguiente archivo para nodemon (nodemon.json) <-- nombre
+y en este archivo creado en la raiz le decimos que vigile todo lo que esta en src de la siguiente forma.
+{
+  //va a vigilar la carpeta src
+    "watch":[
+        "src"
+    ],
+    //dentro src va vigilar todos los archivos con extencion ts y json
+    "ext":"ts,json",
+    //va a ignorar los arhivos .spec.ts"
+    "ignore":[
+        "src/**/*.spec.ts"
+    ],
+    //y va a ejecutar el archivo con el modulo ts-node index.ts
+    "exec":"ts-node ./src/index.ts"
+}
+
+-en el archivo package.json tiene que quedar asi el script
+  "scripts": {
+    "build": "tsc",  --> generara una carpeta build con el proyecto
+    "start":"node build/index.js", ---> modo de produccion
+    "dev":"nodemon" ----------> modo de desarrollo
+  },
+
+- luego configuramos la base de datos lowdb db.ts y tener instalado lo siguiente npm install lowdb@1.0.0
+
+https://youtu.be/9bO0L1rfkvU?t=4726
